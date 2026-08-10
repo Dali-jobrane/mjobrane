@@ -1,278 +1,492 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>M.JOBRANE — Digital Creator · Developer</title>
-    <meta name="description" content="Dali Jabrane — digital creator and developer. Websites, digital menus, and custom technical projects. Tunisia · Remote." />
-    <meta name="author" content="Dali Jabrane" />
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed Ali Jobrane | Developer & Designer</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+        }
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="M.JOBRANE — Digital Creator · Developer" />
-    <meta property="og:description" content="I build fast, modern websites and mobile-first digital menus for cafés and restaurants." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://m-jobrane.site" />
+        /* Glassmorphism Styles */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+        /* Interactive Card with Dynamic Spotlight Glow */
+        .glass-card-interactive {
+            background: rgba(30, 41, 59, 0.35);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
 
-    <link rel="stylesheet" href="style.css">
+        .glass-card-interactive::before {
+            content: '';
+            position: absolute;
+            top: var(--mouse-y, 50%);
+            left: var(--mouse-x, 50%);
+            transform: translate(-50%, -50%);
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            border-radius: 50%;
+        }
 
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='80'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="nav-inner">
-        <a class="logo" href="#home">M.JOBRANE</a>
+        .glass-card-interactive:hover::before {
+            opacity: 1;
+        }
 
-        <nav class="nav" aria-label="Primary">
-          <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#menu-concept">Menu</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
+        .glass-card-interactive:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.2);
+        }
 
-        <div class="cta-wrapper">
-          <a class="btn btn-ghost" href="#contact">Let's talk ↗</a>
-          <button id="mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">☰</button>
+        /* Animated Ambient Background Blobs */
+        @keyframes float-slow {
+            0%, 100% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        @keyframes float-reverse {
+            0%, 100% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(-40px, 30px) scale(0.9); }
+            66% { transform: translate(25px, -30px) scale(1.05); }
+        }
+
+        .animate-blob-1 { animation: float-slow 12s infinite ease-in-out; }
+        .animate-blob-2 { animation: float-reverse 15s infinite ease-in-out; }
+
+        /* Animated Gradient Text */
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animated-gradient-text {
+            background: linear-gradient(-45deg, #818cf8, #c084fc, #38bdf8, #818cf8);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-shift 6s ease infinite;
+        }
+
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #070a11; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
+    </style>
+</head>
+<body class="bg-[#070a11] text-slate-100 antialiased selection:bg-indigo-500 selection:text-white overflow-x-hidden">
+
+    <!-- Top Scroll Progress Bar -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 z-50 transition-all duration-150" style="width: 0%;"></div>
+
+    <!-- Floating Background Lighting -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute -top-40 -left-40 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] animate-blob-1"></div>
+        <div class="absolute top-1/2 -right-40 w-[600px] h-[600px] bg-purple-600/15 rounded-full blur-[140px] animate-blob-2"></div>
+        <div class="absolute -bottom-40 left-1/3 w-[500px] h-[500px] bg-cyan-600/15 rounded-full blur-[120px] animate-blob-1"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 w-full z-40 glass-panel border-b border-slate-800/80">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-extrabold tracking-tight flex items-center gap-2 group">
+                <span class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white text-sm font-bold shadow-md shadow-indigo-500/30 group-hover:scale-105 transition-transform">
+                    M
+                </span>
+                <span class="text-white font-bold">M.<span class="text-indigo-400">JOBRANE</span></span>
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-300">
+                <a href="#about" class="nav-item hover:text-indigo-400 transition-colors">About</a>
+                <a href="#services" class="nav-item hover:text-indigo-400 transition-colors">Services</a>
+                <a href="#solutions" class="nav-item hover:text-indigo-400 transition-colors">Solutions</a>
+                <a href="#contact" class="nav-item hover:text-indigo-400 transition-colors">Contact</a>
+            </div>
+
+            <!-- CTA Button -->
+            <div class="hidden md:block">
+                <a href="#contact" class="relative inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-indigo-600 rounded-xl hover:bg-indigo-500 transition-all duration-300 shadow-lg shadow-indigo-600/30 hover:shadow-indigo-500/50 hover:-translate-y-0.5">
+                    Let's Connect
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobile-menu-toggle" aria-label="Toggle Navigation Menu" class="md:hidden text-slate-300 hover:text-white focus:outline-none p-2">
+                <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
+            </button>
         </div>
-      </div>
 
-      <div id="mobile-nav" class="mobile-nav" hidden>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#work">Work</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#menu-concept">Menu</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </header>
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-slate-800/80 px-6 py-6 space-y-4 transition-all duration-300">
+            <a href="#about" class="mobile-nav-link block text-slate-300 hover:text-indigo-400 font-medium py-2">About</a>
+            <a href="#services" class="mobile-nav-link block text-slate-300 hover:text-indigo-400 font-medium py-2">Services</a>
+            <a href="#solutions" class="mobile-nav-link block text-slate-300 hover:text-indigo-400 font-medium py-2">Solutions</a>
+            <a href="#contact" class="mobile-nav-link block text-slate-300 hover:text-indigo-400 font-medium py-2">Contact</a>
+            <a href="#contact" class="mobile-nav-link block text-center w-full py-3 text-sm font-semibold text-white bg-indigo-600 rounded-xl shadow-lg shadow-indigo-600/30">
+                Let's Connect
+            </a>
+        </div>
+    </nav>
 
-    <main id="home">
-      <!-- HERO -->
-      <section class="hero section" aria-label="Hero">
-        <div class="container hero-grid">
-          <div class="hero-content">
-            <span class="eyebrow">DIGITAL CREATOR · DEVELOPER</span>
-            <h1 class="hero-title">I build digital
-              <br>
-              <span class="accent">experiences.</span>
+    <!-- Hero Section -->
+    <section id="about" class="min-h-screen relative flex items-center justify-center pt-28 pb-16 px-6 z-10">
+        <div class="max-w-4xl mx-auto text-center reveal active">
+            
+            <!-- Availability Badge -->
+            <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full glass-card-interactive border border-emerald-500/30 mb-8">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_#22c55e] animate-pulse"></span>
+                <span class="text-xs font-semibold text-emerald-300 tracking-wide uppercase">Available for Commissions & Projects</span>
+            </div>
+
+            <!-- Profile Avatar with Rotating Glow -->
+            <div class="relative w-40 h-40 mx-auto mb-8 group cursor-pointer" onclick="triggerAvatarPulse(this)">
+                <div class="absolute -inset-1.5 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 blur-lg opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+                <img src="https://cdn.discordapp.com/attachments/1002645162914230322/1530576294172164116/A4393D69-DC3B-4126-B1B1-63DA5C3212E9.jpg?ex=6a7b2bc1&is=6a79da41&hm=b5a3b432c97484cc2b13da1864e8ffc674269bfac88a2211d587b30c7bb69c7c&" 
+                     alt="Mohamed Ali Jobrane" 
+                     class="relative w-full h-full object-cover rounded-full border-2 border-slate-900 shadow-2xl transition-transform duration-300 group-hover:scale-105">
+            </div>
+
+            <!-- Title -->
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
+                Hi, I'm <span class="animated-gradient-text">Mohamed Ali Jobrane</span>
             </h1>
-            <p class="lead">I'm Dali Jabrane. I create websites, digital experiences and practical tech projects with a focus on clean design and a smooth user experience.</p>
 
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#work">Explore my work ↗</a>
-              <a class="btn btn-ghost" href="#contact">Let's talk</a>
+            <p class="text-lg sm:text-xl font-medium text-slate-300 mb-6 tracking-wide">
+                Web Developer <span class="text-indigo-400">&bull;</span> Graphic Designer <span class="text-indigo-400">&bull;</span> Discord Specialist
+            </p>
+
+            <!-- Bio -->
+            <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-10">
+                I build high-performance web interfaces, craft bold visual identities, and develop custom automation bots & gaming ecosystems for modern Discord communities.
+            </p>
+
+            <!-- Buttons -->
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#solutions" class="px-8 py-4 rounded-xl font-semibold text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 shadow-lg shadow-indigo-500/25 transition-all duration-300 hover:-translate-y-1">
+                    Order a Service <i class="fa-solid fa-arrow-down text-xs ml-2"></i>
+                </a>
+                <a href="#contact" class="px-8 py-4 rounded-xl font-semibold text-slate-200 glass-panel border border-slate-700/80 hover:bg-slate-800/80 hover:border-slate-600 transition-all duration-300 hover:-translate-y-1">
+                    Get in Touch
+                </a>
             </div>
 
-            <div class="availability">
-              <strong>AVAILABLE FOR</strong>
-              <div class="chips">
-                <span>Websites & Digital Projects</span>
-                <span>Tunisia · Remote</span>
-              </div>
+            <!-- Quick Tech Badges -->
+            <div class="mt-16 pt-8 border-t border-slate-800/60 flex flex-wrap justify-center items-center gap-8 text-slate-400 text-3xl">
+                <i class="fa-brands fa-html5 hover:text-orange-500 hover:scale-125 transition-all duration-300 cursor-pointer" title="HTML5"></i>
+                <i class="fa-brands fa-css3-alt hover:text-blue-500 hover:scale-125 transition-all duration-300 cursor-pointer" title="CSS3"></i>
+                <i class="fa-brands fa-js hover:text-yellow-400 hover:scale-125 transition-all duration-300 cursor-pointer" title="JavaScript"></i>
+                <i class="fa-brands fa-node-js hover:text-green-500 hover:scale-125 transition-all duration-300 cursor-pointer" title="Node.js"></i>
+                <i class="fa-brands fa-discord hover:text-indigo-400 hover:scale-125 transition-all duration-300 cursor-pointer" title="Discord API"></i>
+                <i class="fa-solid fa-paintbrush hover:text-purple-400 hover:scale-125 transition-all duration-300 cursor-pointer" title="UI/UX Design"></i>
             </div>
-          </div>
+        </div>
+    </section>
 
-          <div class="hero-visual" aria-hidden="true">
-            <div class="orb">
-              <div class="orb-glow"></div>
-              <div class="orb-card">
-                <svg viewBox="0 0 600 400" class="orb-art" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
-                      <stop offset="0%" stop-color="#C9FF3D" stop-opacity="1" />
-                      <stop offset="100%" stop-color="#69FFA3" stop-opacity="0.2" />
-                    </linearGradient>
-                  </defs>
-                  <rect x="20" y="20" rx="18" ry="18" width="560" height="360" fill="url(#g1)" opacity="0.08"></rect>
-                </svg>
-                <div class="orb-info">
-                  <div class="orb-title">M.JOBRANE</div>
-                  <div class="orb-sub">design • code • menus</div>
+    <!-- Services / Skills Section -->
+    <section id="services" class="py-24 px-6 max-w-6xl mx-auto z-10 relative">
+        <div class="text-center mb-16 reveal">
+            <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-2">Capabilities</h2>
+            <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Services & Expertise</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Service 1 -->
+            <div class="glass-card-interactive p-8 rounded-2xl reveal group">
+                <div class="w-14 h-14 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300">
+                    <i class="fa-solid fa-code"></i>
                 </div>
-              </div>
+                <h4 class="text-xl font-bold text-white mb-3">Web Development</h4>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                    Developing modern, responsive, and ultra-fast web pages optimized for mobile devices, clean structure, and seamless interactivity.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-xs font-semibold px-3 py-1 rounded-md bg-slate-800/80 text-indigo-300 border border-slate-700">HTML5 / CSS3</span>
+                    <span class="text-xs font-semibold px-3 py-1 rounded-md bg-slate-800/80 text-indigo-300 border border-slate-700">JavaScript</span>
+                    <span class="text-xs font-semibold px-3 py-1 rounded-md bg-slate-800/80 text-indigo-300 border border-slate-700">Tailwind CSS</span>
+                </div>
             </div>
-          </div>
+
+            <!-- Service 2 -->
+            <div class="glass-card-interactive p-8 rounded-2xl reveal group">
+                <div class="w-14 h-14 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-purple-500 group-hover:text-white transition-all duration-300">
+                    <i class="fa-solid fa-palette"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-3">Graphic Design</h4>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                    Crafting distinctive visual identities, gaming logos, server banners, social media graphics, and clean UI/UX layout mockups.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-xs font-semibold px-3 py-1 rounded-md bg-slate-800/80 text-purple-300 border border-slate-700">Branding</span>
+                    <span class="text-xs font-semibold px-3 py-1 rounded-md bg-slate-800/80 text-purple-300 border border-slate-700">UI/UX</span>
+                    <span class="text-xs font-semibold px-3 py-1 rounded-md bg-slate-800/80 text-purple-300 border border-slate-700">Banners</span>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="glass-card-interactive p-8 rounded-2xl reveal group">
+                <div class="w-14 h-14 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-cyan-500 group-hover:text-white transition-all duration-300">
+                    <i class="fa-brands fa-discord"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-3">Discord Systems</h4>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                    Building custom Discord bots, automated server roles, API integrations, and organizing full community/gaming server structures.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-xs font-semibold px-3 py-1 rounded-md bg-slate-800/80 text-cyan-300 border border-slate-700">Node.js</span>
+                    <span class="text-xs font-semibold px-3 py-1 rounded-md bg-slate-800/80 text-cyan-300 border border-slate-700">Discord API</span>
+                    <span class="text-xs font-semibold px-3 py-1 rounded-md bg-slate-800/80 text-cyan-300 border border-slate-700">Automation</span>
+                </div>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <!-- ABOUT -->
-      <section id="about" class="section about" aria-labelledby="about-title">
-        <div class="container">
-          <h2 id="about-title" class="section-title">Turning ideas into
-            <br>something real.</h2>
-          <p class="section-lead">I enjoy building things that look good, work well and solve an actual problem. From personal websites to digital menus and technical projects, I like taking an idea from concept to a finished product.</p>
-
-          <div class="info-grid">
-            <article class="info-card">
-              <h3>WEB</h3>
-              <p>Modern responsive websites — performance-first, accessible, and tailored to your brand.</p>
-            </article>
-
-            <article class="info-card">
-              <h3>UI</h3>
-              <p>Clean, simple interfaces — focused on clarity, hierarchy and human-centered interactions.</p>
-            </article>
-
-            <article class="info-card">
-              <h3>TECH</h3>
-              <p>Experiments & custom projects — automation, prototypes, integrations and connected experiences.</p>
-            </article>
-          </div>
+    <!-- Client Solutions / Work Offered Section -->
+    <section id="solutions" class="py-24 px-6 max-w-6xl mx-auto z-10 relative">
+        <div class="text-center mb-16 reveal">
+            <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-2">Commissions</h2>
+            <h3 class="text-3xl sm:text-4xl font-extrabold text-white">What I Can Build For You</h3>
+            <p class="text-slate-400 text-sm mt-2 max-w-lg mx-auto">Ready to turn your concepts into reality with custom setups tailored specifically to your needs.</p>
         </div>
-      </section>
 
-      <!-- WORK -->
-      <section id="work" class="section work" aria-labelledby="work-title">
-        <div class="container">
-          <div class="section-head">
-            <span class="muted">02 — SELECTED WORK</span>
-            <h2 id="work-title" class="section-title">Selected projects</h2>
-          </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Solution 1: Web -->
+            <div class="glass-card-interactive p-8 rounded-2xl reveal flex flex-col justify-between group">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl mb-6 group-hover:bg-indigo-500 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Custom Websites & Portfolios</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Fully responsive, fast-loading, and modern landing pages designed for gaming servers, creative portfolios, or business sites.
+                    </p>
+                </div>
+                <a href="#contact" class="inline-flex items-center gap-2 text-xs font-semibold text-indigo-400 hover:text-indigo-300 transition-colors">
+                    Request Web Build <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
 
-          <div class="projects-grid">
-            <a class="project-card" href="#personal-portfolio" aria-label="Personal Portfolio project">
-              <div class="project-thumb"></div>
-              <div class="project-meta">
-                <h3>Personal Portfolio</h3>
-                <p>A personal digital home for my work, projects and contact information.</p>
-              </div>
-            </a>
+            <!-- Solution 2: Discord Systems -->
+            <div class="glass-card-interactive p-8 rounded-2xl reveal flex flex-col justify-between group">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl mb-6 group-hover:bg-cyan-500 group-hover:text-white transition-colors">
+                        <i class="fa-brands fa-discord"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Discord Bots & Server Layouts</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Tailored Discord bots (custom slash commands, ticket systems, moderation) and fully organized server structures.
+                    </p>
+                </div>
+                <a href="#contact" class="inline-flex items-center gap-2 text-xs font-semibold text-cyan-400 hover:text-cyan-300 transition-colors">
+                    Request Discord Bot <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
 
-            <a class="project-card" href="#menu-concept" aria-label="Digital Menus project">
-              <div class="project-thumb"></div>
-              <div class="project-meta">
-                <h3>Digital Menus</h3>
-                <p>Interactive online menus for cafés and restaurants, designed to work beautifully on phones.</p>
-              </div>
-            </a>
-
-            <a class="project-card" href="#tech-experiments" aria-label="Tech Experiments project">
-              <div class="project-thumb"></div>
-              <div class="project-meta">
-                <h3>Tech Experiments</h3>
-                <p>Custom projects around websites, automation, gaming and connected technology.</p>
-              </div>
-            </a>
-          </div>
+            <!-- Solution 3: Graphics -->
+            <div class="glass-card-interactive p-8 rounded-2xl reveal flex flex-col justify-between group">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl mb-6 group-hover:bg-purple-500 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-paintbrush"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Graphic & Branding Kits</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Logos, server banners, social media assets, and UI concepts built to give your project a professional, unique look.
+                    </p>
+                </div>
+                <a href="#contact" class="inline-flex items-center gap-2 text-xs font-semibold text-purple-400 hover:text-purple-300 transition-colors">
+                    Request Design Work <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <!-- SERVICES -->
-      <section id="services" class="section services" aria-labelledby="services-title">
-        <div class="container">
-          <h2 id="services-title" class="section-title">Services</h2>
-          <p class="section-lead">I collaborate with cafés, restaurants and small businesses to launch digital experiences that are fast, mobile-first and easy to manage.</p>
+    <!-- HIGHLY INTERACTIVE CONTACT SECTION -->
+    <section id="contact" class="py-24 px-6 max-w-4xl mx-auto z-10 relative">
+        <div class="glass-panel p-8 sm:p-12 rounded-3xl border border-slate-800 text-center relative overflow-hidden reveal">
+            <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-2">Get In Touch</h2>
+            <h3 class="text-3xl font-extrabold text-white mb-4">Let's Work Together</h3>
+            <p class="text-slate-400 max-w-md mx-auto mb-10 text-sm sm:text-base">
+                Have a project idea, need a custom Discord bot, or want to design a website? Reach out through any of these interactive channels:
+            </p>
 
-          <div class="services-grid">
-            <div class="service-card">
-              <div class="service-index">01</div>
-              <h3>Websites</h3>
-              <p>Fast, responsive websites with a strong visual identity and simple navigation.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                
+                <!-- Discord Interactive Card -->
+                <div class="glass-card-interactive p-6 rounded-2xl flex flex-col justify-between items-center group relative">
+                    <div class="w-12 h-12 rounded-full bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl mb-3 group-hover:bg-indigo-500 group-hover:text-white transition-colors">
+                        <i class="fa-brands fa-discord"></i>
+                    </div>
+                    <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold mb-1">Discord</span>
+                    <span class="text-sm font-bold text-slate-200 mb-4">m.g6</span>
+                    
+                    <div class="flex gap-2 w-full mt-auto">
+                        <button onclick="copyToClipboard('m.g6', 'Discord Tag copied to clipboard!')" class="flex-1 py-2 px-3 text-xs font-semibold rounded-lg bg-indigo-600/30 hover:bg-indigo-600 text-indigo-200 hover:text-white border border-indigo-500/40 transition-all flex items-center justify-center gap-1.5">
+                            <i class="fa-regular fa-copy"></i> Copy
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Instagram Interactive Card -->
+                <div class="glass-card-interactive p-6 rounded-2xl flex flex-col justify-between items-center group relative">
+                    <div class="w-12 h-12 rounded-full bg-pink-500/10 text-pink-400 flex items-center justify-center text-xl mb-3 group-hover:bg-pink-500 group-hover:text-white transition-colors">
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                    <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold mb-1">Instagram</span>
+                    <span class="text-sm font-bold text-slate-200 mb-4">@m.jobrane</span>
+                    
+                    <a href="https://instagram.com/m.jobrane" target="_blank" rel="noopener noreferrer" class="w-full py-2 px-3 text-xs font-semibold rounded-lg bg-pink-600/30 hover:bg-pink-600 text-pink-200 hover:text-white border border-pink-500/40 transition-all flex items-center justify-center gap-1.5 mt-auto">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit
+                    </a>
+                </div>
+
+                <!-- Email Interactive Card -->
+                <div class="glass-card-interactive p-6 rounded-2xl flex flex-col justify-between items-center group relative">
+                    <div class="w-12 h-12 rounded-full bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl mb-3 group-hover:bg-cyan-500 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold mb-1">Direct Email</span>
+                    <span class="text-xs font-bold text-slate-200 truncate max-w-[150px] mb-4">m.jobrane.contact@gmail.com</span>
+                    
+                    <div class="flex gap-2 w-full mt-auto">
+                        <a href="mailto:m.jobrane.contact@gmail.com" class="flex-1 py-2 px-2 text-xs font-semibold rounded-lg bg-cyan-600/30 hover:bg-cyan-600 text-cyan-200 hover:text-white border border-cyan-500/40 transition-all flex items-center justify-center gap-1">
+                            <i class="fa-solid fa-paper-plane"></i> Send
+                        </a>
+                        <button onclick="copyToClipboard('m.jobrane.contact@gmail.com', 'Email address copied!')" class="py-2 px-2.5 text-xs font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+
             </div>
-
-            <div class="service-card">
-              <div class="service-index">02</div>
-              <h3>Digital Menus</h3>
-              <p>Mobile-first menus for restaurants and cafés, accessible through a simple link or QR code.</p>
-            </div>
-
-            <div class="service-card">
-              <div class="service-index">03</div>
-              <h3>Custom Tech</h3>
-              <p>Personalized technical solutions, prototypes and digital experiments.</p>
-            </div>
-          </div>
         </div>
-      </section>
+    </section>
 
-      <!-- MENU CONCEPT -->
-      <section id="menu-concept" class="section menu-concept" aria-labelledby="menu-title">
-        <div class="container">
-          <h2 id="menu-title" class="section-title">One domain. Infinite possibilities.</h2>
-          <p class="section-lead">I provide digital menu websites for cafés and restaurants using their own subdomain. Fast, mobile-first and easy to update — no app required.</p>
-
-          <div class="menu-visual-grid">
-            <div class="menu-card">
-              <div class="menu-sub">cafe-name.m-jobrane.site</div>
-              <div class="menu-preview">
-                <div class="menu-header">Café Verde</div>
-                <ul class="menu-items">
-                  <li><strong>Espresso</strong> — Single origin, 18 TND</li>
-                  <li><strong>Flat White</strong> — Smooth &amp; velvety, 26 TND</li>
-                  <li><strong>Avocado Toast</strong> — Sourdough, 22 TND</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="menu-features">
-              <ul>
-                <li>QR-code friendly</li>
-                <li>Mobile-first</li>
-                <li>Fast loading</li>
-                <li>Easy to update</li>
-                <li>Restaurant branding</li>
-                <li>No app required</li>
-              </ul>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section id="contact" class="section contact" aria-labelledby="contact-title">
-        <div class="container contact-grid">
-          <div class="contact-cta">
-            <h2 id="contact-title">Have an idea?
-              <br>Let's build it.</h2>
-            <p class="section-lead">Tell me what you're working on and let's turn the idea into a real digital experience.</p>
-
-            <a class="btn btn-primary large" href="mailto:YOUR_EMAIL@example.com">Start a conversation ↗</a>
-          </div>
-
-          <aside class="contact-info" aria-hidden="true">
-            <div class="contact-card">
-              <div>
-                <strong>Based in</strong>
-                <div>Tunisia · Remote</div>
-              </div>
-
-              <div>
-                <strong>Services</strong>
-                <div>Websites · Digital Menus · Custom Tech</div>
-              </div>
-
-              <div>
-                <strong>Interested in</strong>
-                <div>Cafés, Restaurants, Creative Projects</div>
-              </div>
-            </div>
-
-            <div class="socials">
-              <a href="#" aria-label="Instagram placeholder">Instagram</a>
-              <a href="#" aria-label="GitHub placeholder">GitHub</a>
-              <a href="#" aria-label="LinkedIn placeholder">LinkedIn</a>
-            </div>
-          </aside>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <div>© 2026 Dali Jabrane</div>
-        <div class="footer-domain">m-jobrane.site</div>
-      </div>
+    <!-- Footer -->
+    <footer class="py-8 text-center text-xs text-slate-500 border-t border-slate-800/80 relative z-10">
+        <p>&copy; 2026 Mohamed Ali Jobrane (M.jobrane). All rights reserved.</p>
     </footer>
 
-    <script src="script.js" defer></script>
-  </body>
+    <!-- Interactive Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 glass-panel px-5 py-3 rounded-xl border border-indigo-500/50 text-sm font-medium text-white shadow-2xl opacity-0 translate-y-4 pointer-events-none transition-all duration-300 z-50 flex items-center gap-3">
+        <div class="w-6 h-6 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <span id="toast-message">Action successful!</span>
+    </div>
+
+    <!-- JavaScript Interactive Logic -->
+    <script>
+        // 1. Mouse Spotlight Tracker for Interactive Cards
+        document.querySelectorAll('.glass-card-interactive').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // 2. Scroll Progress Bar & Scroll Reveal
+        window.addEventListener('scroll', () => {
+            // Scroll Progress
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scroll-progress').style.width = scrolled + '%';
+
+            // Reveal Elements on Scroll
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        });
+
+        // Initial check for reveals on page load
+        window.dispatchEvent(new Event('scroll'));
+
+        // 3. Mobile Hamburger Menu Toggle
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuToggle.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.className = isHidden ? 'fa-solid fa-xmark text-xl' : 'fa-solid fa-bars text-xl';
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.className = 'fa-solid fa-bars text-xl';
+            });
+        });
+
+        // 4. Copy to Clipboard Function with Toast
+        function copyToClipboard(text, message) {
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = document.getElementById('toast');
+                const toastMsg = document.getElementById('toast-message');
+                toastMsg.textContent = message;
+                
+                toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+                toast.classList.add('opacity-100', 'translate-y-0');
+
+                setTimeout(() => {
+                    toast.classList.remove('opacity-100', 'translate-y-0');
+                    toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+                }, 2500);
+            });
+        }
+
+        // 5. Avatar Pulse Effect on Click
+        function triggerAvatarPulse(element) {
+            element.classList.add('scale-110');
+            setTimeout(() => element.classList.remove('scale-110'), 200);
+        }
+    </script>
+</body>
 </html>
