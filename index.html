@@ -71,13 +71,200 @@
 
     <meta property="og:type" content="website">
 
+<!-- ==============================
+     LOADING SCREEN
+================================ -->
+
+<div id="loader">
+    <div class="loader-content">
+
+        <!-- Transparent logo -->
+        <div class="loader-logo">
+            <img src="https://cdn.discordapp.com/attachments/1002645162914230322/1536484495056707614/32C17B03-6220-4079-B71A-3328334E4221.png?ex=6a7b9232&is=6a7a40b2&hm=0316d81127b1eb9797b69c775ae3c7a5ee3f6fa450b99cedd407839a99cab54f&" alt="MJ Logo">
+        </div>
+
+        <div class="loader-line"></div>
+
+        <div class="loader-text">
+            <span>M.Jobrane</span>
+            <span>CREATIVE</span>
+        </div>
+
+        <div class="loader-counter">
+            <span id="loaderPercent">0</span>%
+        </div>
+
+    </div>
+</div>
 
     <!-- ==================================================
          CSS
     ================================================== -->
 
     <style>
+/* ==============================
+   LOADER
+================================ */
 
+#loader {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    background: #050505;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    overflow: hidden;
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
+}
+
+#loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader-content {
+    width: min(420px, 80%);
+    text-align: center;
+    position: relative;
+}
+
+/* Logo */
+
+.loader-logo {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    animation: logoFloat 2s ease-in-out infinite;
+}
+
+.loader-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    /* Important:
+       Use a PNG/SVG with transparent background */
+    background: transparent;
+
+    filter: brightness(0) invert(1);
+
+    animation: logoPulse 2s ease-in-out infinite;
+}
+
+/* Loading line */
+
+.loader-line {
+    width: 100%;
+    height: 1px;
+    background: #222;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.loader-line::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 35%;
+    height: 100%;
+
+    background: #fff;
+
+    animation: loadingLine 1.2s ease-in-out infinite;
+}
+
+/* Text */
+
+.loader-text {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 5px;
+}
+
+.loader-text span:first-child {
+    color: #fff;
+}
+
+.loader-text span:last-child {
+    color: #555;
+}
+
+/* Percentage */
+
+.loader-counter {
+    margin-top: 25px;
+
+    font-family: monospace;
+    font-size: 12px;
+
+    color: #777;
+    letter-spacing: 2px;
+}
+
+#loaderPercent {
+    color: #fff;
+}
+
+
+/* ==============================
+   ANIMATIONS
+================================ */
+
+@keyframes logoFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes logoPulse {
+
+    0%,
+    100% {
+        opacity: 0.7;
+        transform: scale(0.95);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes loadingLine {
+
+    0% {
+        transform: translateX(-120%);
+    }
+
+    100% {
+        transform: translateX(350%);
+    }
+}
         /* =================================================
            ROOT
         ================================================= */
@@ -5525,7 +5712,31 @@
 
             });
 
+/* ==============================
+   LOADING SCRIPT
+================================ */
 
+let progress = 0;
+
+const loader = document.getElementById("loader");
+const percent = document.getElementById("loaderPercent");
+
+const loading = setInterval(() => {
+
+    progress++;
+
+    percent.textContent = progress;
+
+    if (progress >= 100) {
+
+        clearInterval(loading);
+
+        setTimeout(() => {
+            loader.classList.add("hidden");
+        }, 500);
+    }
+
+}, 20);
         /* =================================================
            CERTIFICATE LIBRARY HELPER
         ================================================= */
